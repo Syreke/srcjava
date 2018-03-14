@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleof.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="/bootstrap.min.css" media="screen"/>
+</head>
+<body>
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="form-group">
+            <form action="#" th:action="@{/infos/}" th:object="${info}" method="post">
+                <label for="position">Позиция</label>
+                <input type="text" id="position" name="position" th:field="*{position}"
+                       class="form-control" placeholder=""/>
+                <label for="number">Номер</label>
+                <input type="text" id="number" name="number" th:field="*{number}"
+                       class="form-control" placeholder=""/>
+                <br/>
+                <button type="submit" class="btn btn-primary">Сохранить</button>
+
+            </form>
+
+        </div>
+
+    </div>
+</div>
+</body>
+</html>

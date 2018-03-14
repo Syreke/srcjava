@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleof.org">
+<head>
+    <title>Developer</title>
+    <meta http-equiv="Content-Type" content="text/html"; charset="UTF-8">
+    <link rel="stylesheet" href="/bootstrap.min.css" media="screen"/>
+</head>
+<body>
+<div class="container">
+    <div class="page-header" id="banner">
+        <div class="row">
+            <div class="col-lg-8 col-md-7 col-sm-6">
+                <h1>Игрок</h1>
+
+                <form class="form-horizontal" th:action="@{/player/{id}/information(id=${player.id})}"
+                      method="post" enctype="multipart/form-data">
+                    <fieldset>
+                        <div class="form-group">
+                            <label class="col-lg-2 control-label">Имя</label>
+                            <div class="col-lg-6">
+                                <input type="text" class="form-control" disabled="disabled"
+                                       th:value="${player.firstname + ' ' + player.lastname}"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-2 control-label">Информация</label>
+                            <div class="col-lg-10">
+                                <div th:each="team: ${player.teams}">
+                                    <span th:text="${team.nameOfTeam}"/> - <span th:text="${team.league}"/>
+                                </div>
+                                <div th:each="info: ${player.infos}">
+                                    <span th:text="${info.position}"/> - <span th:text="${info.number}"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-lg-6 col-lg-offset-2">
+                                <div class="input-group">
+                                    <select name="teamId" class="form-control">
+                                        <option th:each="team : ${teams}"
+                                                th:value="${team.id}"
+                                                th:text="${team.nameOfTeam}">Клуб</option>
+                                    </select>
+                                    <span class="input-group-btn">
+                                    <button type="submit" class="btn btn-default">Добавить</button>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-lg-6 col-lg-offset-2">
+                                <div class="input-group">
+                                    <select name="infoId" class="form-control">
+                                        <option th:each="info : ${infos}"
+                                                th:value="${info.id}"
+                                                th:text="${info.number}">Позиция</option>
+                                    </select>
+                                    <span class="input-group-btn">
+                                    <button type="submit" class="btn btn-default">Добавить</button>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
